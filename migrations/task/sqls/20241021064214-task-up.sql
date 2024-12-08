@@ -139,6 +139,7 @@ VALUES
  ((SELECT id FROM "COACH" WHERE (user_id = (SELECT id FROM "USER" WHERE email = 'starplatinum@hexschooltest.io'))),
  (SELECT id FROM "SKILL" WHERE name = '復健訓練')
 );
+
 -- 3-3 修改：更新教練的經驗年數，資料需求如下：
     -- 1. 教練`肌肉棒子` 的經驗年數為3年
     -- 2. 教練`Q太郎` 的經驗年數為5年
