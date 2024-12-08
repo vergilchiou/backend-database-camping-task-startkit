@@ -36,11 +36,11 @@ DELETE FROM "USER"
 WHERE email = 'opcatiy0@hexschooltest.io';
 
 -- 1-4 查詢：取得USER 資料表目前所有用戶數量（提示：使用count函式）
-SELECT COUNT(*) FROM "USER"
+SELECT COUNT(*) FROM "USER";
 
 -- 1-5 查詢：取得 USER 資料表所有用戶資料，並列出前 3 筆（提示：使用limit語法）
 SELECT * FROM "USER"
-limit 3
+limit 3;
 
 -- --  ████████  █████   █    ████  
 -- --    █ █   ██    █  █         █ 
