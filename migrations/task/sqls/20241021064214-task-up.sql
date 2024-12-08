@@ -25,22 +25,22 @@ VALUES
 ('透明人', 'opcatiy0@hexschooltest.io', 'USER');
 
 -- 1-2 修改：用 Email 找到 李燕容、肌肉棒子、Q太郎，如果他的 Role 為 USER 將他的 Role 改為 COACH
--- UPDATE "USER"
--- SET ROLE = 'COACH'
--- WHERE email 
--- IN ('lee2000@hexschooltest.io', 
---     'muscle@hexschooltest.io', 
---     'starplatinum@hexschooltest.io');
--- -- 1-3 刪除：刪除USER 資料表中，用 Email 找到透明人，並刪除該筆資料
--- DELETE FROM "USER"
--- WHERE email = 'opcatiy0@hexschooltest.io';
+UPDATE "USER"
+SET ROLE = 'COACH'
+WHERE email 
+IN ('lee2000@hexschooltest.io', 
+    'muscle@hexschooltest.io', 
+    'starplatinum@hexschooltest.io');
+-- 1-3 刪除：刪除USER 資料表中，用 Email 找到透明人，並刪除該筆資料
+DELETE FROM "USER"
+WHERE email = 'opcatiy0@hexschooltest.io';
 
--- -- 1-4 查詢：取得USER 資料表目前所有用戶數量（提示：使用count函式）
--- SELECT COUNT(*) FROM "USER"
+-- 1-4 查詢：取得USER 資料表目前所有用戶數量（提示：使用count函式）
+SELECT COUNT(*) FROM "USER"
 
--- -- 1-5 查詢：取得 USER 資料表所有用戶資料，並列出前 3 筆（提示：使用limit語法）
--- SELECT * FROM "USER"
--- limit 3
+-- 1-5 查詢：取得 USER 資料表所有用戶資料，並列出前 3 筆（提示：使用limit語法）
+SELECT * FROM "USER"
+limit 3
 
 -- --  ████████  █████   █    ████  
 -- --    █ █   ██    █  █         █ 
