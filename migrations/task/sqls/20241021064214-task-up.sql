@@ -256,13 +256,20 @@ AND status = '即將授課';
 
 -- 5-6. 查詢：計算用戶王小明的購買堂數，顯示須包含以下欄位： user_id , total。 (需使用到 SUM 函式與 Group By)
 SELECT 
-    "CREDIT_PURCHASE".user_id AS 會員編號,
-    SUM("CREDIT_PURCHASE".purchased_credits) AS Total
+    "CREDIT_PURCHASE".user_id AS user_id,
+    SUM("CREDIT_PURCHASE".purchased_credits) AS total
 FROM "CREDIT_PURCHASE"
 WHERE user_id = (SELECT id FROM "USER" WHERE email = 'wXlTq@hexschooltest.io')
 Group By "CREDIT_PURCHASE".user_id;
 
 -- 5-7. 查詢：計算用戶王小明的已使用堂數，顯示須包含以下欄位： user_id , total。 (需使用到 Count 函式與 Group By)
+SELECT
+    "COURSE_BOOKING".user_id AS user_id,
+    COUNT(*) AS total 
+FROM "COURSE_BOOKING"
+WHERE user_id = (SELECT id FROM "USER" WHERE email = 'wXlTq@hexschooltest.io')
+AND status != '課程取消'
+Group By "COURSE_BOOKING".user_id;
 
 -- 5-8. [挑戰題] 查詢：請在一次查詢中，計算用戶王小明的剩餘可用堂數，顯示須包含以下欄位： user_id , remaining_credit
     -- 提示：
