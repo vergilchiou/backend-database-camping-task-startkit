@@ -288,6 +288,16 @@ Group By "COURSE_BOOKING".user_id;
 -- 6. 後台報表
 -- 6-1 查詢：查詢專長為重訓的教練，並按經驗年數排序，由資深到資淺（需使用 inner join 與 order by 語法)
 -- 顯示須包含以下欄位： 教練名稱 , 經驗年數, 專長名稱
+SELECT
+	"USER".name,
+	"COACH".experience_years,
+	"SKILL".name 
+FROM "COACH" 
+inner join "USER" ON "COACH".user_id = "USER".id 
+inner join "COACH_LINK_SKILL" ON  "COACH".id = "COACH_LINK_SKILL".coach_id 
+inner join "SKILL" ON "SKILL".id = "COACH_LINK_SKILL".skill_id 
+WHERE "SKILL".name = '重訓'
+order By experience_years desc 
 
 -- 6-2 查詢：查詢每種專長的教練數量，並只列出教練數量最多的專長（需使用 group by, inner join 與 order by 與 limit 語法）
 -- 顯示須包含以下欄位： 專長名稱, coach_total
