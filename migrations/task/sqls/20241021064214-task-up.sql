@@ -259,7 +259,7 @@ SELECT
     "CREDIT_PURCHASE".user_id AS user_id,
     SUM("CREDIT_PURCHASE".purchased_credits) AS total
 FROM "CREDIT_PURCHASE"
-WHERE user_id = (SELECT id FROM "USER" WHERE email = 'wXlTq@hexschooltest.io')
+WHERE "CREDIT_PURCHASE".user_id = (SELECT id FROM "USER" WHERE email = 'wXlTq@hexschooltest.io')
 Group By "CREDIT_PURCHASE".user_id;
 
 -- 5-7. 查詢：計算用戶王小明的已使用堂數，顯示須包含以下欄位： user_id , total。 (需使用到 Count 函式與 Group By)
@@ -267,7 +267,7 @@ SELECT
     "COURSE_BOOKING".user_id AS user_id,
     COUNT(*) AS total 
 FROM "COURSE_BOOKING"
-WHERE user_id = (SELECT id FROM "USER" WHERE email = 'wXlTq@hexschooltest.io')
+WHERE "COURSE_BOOKING".user_id = (SELECT id FROM "USER" WHERE email = 'wXlTq@hexschooltest.io')
 AND status != '課程取消'
 Group By "COURSE_BOOKING".user_id;
 
@@ -289,15 +289,15 @@ Group By "COURSE_BOOKING".user_id;
 -- 6-1 查詢：查詢專長為重訓的教練，並按經驗年數排序，由資深到資淺（需使用 inner join 與 order by 語法)
 -- 顯示須包含以下欄位： 教練名稱 , 經驗年數, 專長名稱
 SELECT
-	"USER".name,
-	"COACH".experience_years,
-	"SKILL".name 
+	"USER".name AS 教練名稱,
+	"COACH".experience_years AS 經驗年數,
+	"SKILL".name AS 專長名稱
 FROM "COACH" 
 inner join "USER" ON "COACH".user_id = "USER".id 
 inner join "COACH_LINK_SKILL" ON  "COACH".id = "COACH_LINK_SKILL".coach_id 
 inner join "SKILL" ON "SKILL".id = "COACH_LINK_SKILL".skill_id 
 WHERE "SKILL".name = '重訓'
-order By experience_years desc 
+order By experience_years desc;
 
 -- 6-2 查詢：查詢每種專長的教練數量，並只列出教練數量最多的專長（需使用 group by, inner join 與 order by 與 limit 語法）
 -- 顯示須包含以下欄位： 專長名稱, coach_total
