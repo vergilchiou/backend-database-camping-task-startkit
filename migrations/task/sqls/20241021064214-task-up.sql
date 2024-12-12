@@ -223,7 +223,6 @@ VALUES
 -- 5-2. 修改：`王小明`取消預約 `李燕容` 的課程，請在`COURSE_BOOKING`更新該筆預約資料：
     -- 1. 取消預約時間`cancelled_at` 設為2024-11-24 17:00:00
     -- 2. 狀態`status` 設定為課程已取消
-
 UPDATE "COURSE_BOOKING" SET cancelled_at = '2024-11-24 17:00:00', status = '課程取消'
 WHERE user_id = (SELECT id FROM "USER" WHERE email = 'wXlTq@hexschooltest.io')
 AND course_id = (SELECT id FROM "COURSE" WHERE user_id = (SELECT id FROM "USER" WHERE email = 'lee2000@hexschooltest.io') AND name = '重訓基礎課');
@@ -232,19 +231,19 @@ AND course_id = (SELECT id FROM "COURSE" WHERE user_id = (SELECT id FROM "USER" 
     -- 1. 預約人設為`王小明`
     -- 2. 預約時間`booking_at` 設為2024-11-24 17:10:25
     -- 3. 狀態`status` 設定為即將授課
-INSERT INTO "COURSE_BOOKING" (user_id, course_id, booking_at, status)
-VALUES
-(
-    (SELECT id FROM "USER" WHERE email = 'wXlTq@hexschooltest.io'),
-    (SELECT id FROM "COURSE" WHERE user_id = (SELECT id FROM "USER" WHERE email = 'lee2000@hexschooltest.io' AND name = '重訓基礎課')),
-    '2024-11-24 17:10:25',
-    '即將授課'
-);
+-- INSERT INTO "COURSE_BOOKING" (user_id, course_id, booking_at, status)
+-- VALUES
+-- (
+--     (SELECT id FROM "USER" WHERE email = 'wXlTq@hexschooltest.io'),
+--     (SELECT id FROM "COURSE" WHERE user_id = (SELECT id FROM "USER" WHERE email = 'lee2000@hexschooltest.io' AND name = '重訓基礎課')),
+--     '2024-11-24 17:10:25',
+--     '即將授課'
+-- );
 
 
 -- 5-4. 查詢：取得王小明所有的預約紀錄，包含取消預約的紀錄
-SELECT * FROM "COURSE_BOOKING"
-WHERE user_id = (SELECT id FROM "USER" WHERE email = 'wXlTq@hexschooltest.io');
+-- SELECT * FROM "COURSE_BOOKING"
+-- WHERE user_id = (SELECT id FROM "USER" WHERE email = 'wXlTq@hexschooltest.io');
 
 
 -- 5-5. 修改：`王小明` 現在已經加入直播室了，請在`COURSE_BOOKING`更新該筆預約資料（請注意，不要更新到已經取消的紀錄）：
