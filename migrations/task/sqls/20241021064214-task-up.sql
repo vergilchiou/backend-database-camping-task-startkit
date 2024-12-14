@@ -280,7 +280,15 @@ Group By "COURSE_BOOKING".user_id;
 SELECT 
     "CREDIT_PURCHASE".user_id AS user_id,
     "USER"."name" AS "會員名稱",
-    SUM("CREDIT_PURCHASE".purchased_credits) - COUNT(*) AS remaining_credit
+    SUM("CREDIT_PURCHASE".purchased_credits) - 
+    (
+    	SELECT		
+		    COUNT(*) 
+		FROM "COURSE_BOOKING"
+		WHERE "COURSE_BOOKING".user_id = (SELECT id FROM "USER" WHERE email = 'wXlTq@hexschooltest.io')
+		AND status != '課程取消'
+		Group By "COURSE_BOOKING".user_id
+    ) AS remaining_credit
 FROM "CREDIT_PURCHASE"
 INNER JOIN "COURSE_BOOKING" ON "COURSE_BOOKING".user_id = "CREDIT_PURCHASE".user_id
 INNER JOIN "USER" ON "USER".id = "CREDIT_PURCHASE".user_id
