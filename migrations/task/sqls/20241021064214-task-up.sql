@@ -304,7 +304,7 @@ order By experience_years desc;
 SELECT 
 
     -- "COACH_LINK_SKILL".skill_id, --(如果也要顯示課程 id)
-    "SKILL".name AS 專長名稱,
+    "SKILL".name AS "專長名稱",
     COUNT(*) AS COACH_TOTAL
 FROM "COACH_LINK_SKILL"
 INNER JOIN "SKILL" ON "COACH_LINK_SKILL".skill_id = "SKILL".id 
@@ -317,6 +317,15 @@ LIMIT 1;
 
 -- 6-3. 查詢：計算 11 月份組合包方案的銷售數量
 -- 顯示須包含以下欄位： 組合包方案名稱, 銷售數量
+SELECT 
+    "CREDIT_PACKAGE".name AS "組合包方案名稱",
+    COUNT(*) AS "購買數量"
+FROM "CREDIT_PURCHASE"
+INNER JOIN "CREDIT_PACKAGE" ON "CREDIT_PACKAGE".id = "CREDIT_PURCHASE".credit_package_id
+-- 我的資料庫時間是 12 月，所以改成查詢 12 月份的寫法
+WHERE "CREDIT_PURCHASE".created_at >= '2024-12-01 00:00:00' AND "CREDIT_PURCHASE".created_at <= '2024-12-31 23:59:59'
+GROUP BY "CREDIT_PACKAGE".name;
+
 
 -- 6-4. 查詢：計算 11 月份總營收（使用 purchase_at 欄位統計）
 -- 顯示須包含以下欄位： 總營收
