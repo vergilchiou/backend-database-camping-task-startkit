@@ -338,6 +338,9 @@ AND "CREDIT_PURCHASE".created_at <= '2024-12-31 23:59:59';
 -- 6-5. 查詢：計算 11 月份有預約課程的會員人數（需使用 Distinct，並用 created_at 和 status 欄位統計）
 -- 顯示須包含以下欄位： 預約會員人數
 SELECT 
+    --直接用 COUNT(*) 會重複計算到預約兩門課以上的同學， 但題目只要『有預約課程的會員人數』
+    --例如王小明若於該月份同時預約有 "重訓基礎課" 跟 "瑜伽" 的話
+    --會被計算兩次
     COUNT(DISTINCT(user_id)) AS "預約會員人數"
 FROM "COURSE_BOOKING"
 WHERE "COURSE_BOOKING".status != '課程取消'
