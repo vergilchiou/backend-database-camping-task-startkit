@@ -287,7 +287,7 @@ SELECT
 		FROM "COURSE_BOOKING"
 		WHERE "COURSE_BOOKING".user_id = (SELECT id FROM "USER" WHERE email = 'wXlTq@hexschooltest.io')
 		AND status != '課程取消'
-		Group By "COURSE_BOOKING".user_id
+		
     ) AS remaining_credit
 FROM "CREDIT_PURCHASE"
 INNER JOIN "COURSE_BOOKING" ON "COURSE_BOOKING".user_id = "CREDIT_PURCHASE".user_id
